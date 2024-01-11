@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    #Police de redémmarage, pour dire qu'il redémmarre tout le temps 
+    restart: always 
+    ports: 
+    #Mettre "-" lorsque nous avons une liste (ports: 80:70)
+      - 8080:80
+    environment: 
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: pass
+      WORDPRESS_DB_NAME: example
+    depends_on:
+      - db
+  db: 
+    image: mysql:8.0
+    restart: always
+    environment: 
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
