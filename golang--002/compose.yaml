@@ -30,9 +30,7 @@ services:
       - database_data:/var/lib/postgresql/data:rw
     networks:
       - internal
-
 volumes:
   database_data:
-
 networks:
   internal:

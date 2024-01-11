@@ -17,4 +17,4 @@ RUN make install
 
 #Commande nécessaire pour l'utilisation 
 ENTRYPOINT [ "/usr/local/bin/node" ]
-CMD ["-e", "console.('hello ', process.version)"]
+CMD ["-e", "console.('hello 'wo, process.version)"]

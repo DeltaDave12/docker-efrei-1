@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    networks:
+      - internal
+    ports:
+      - 8080:80
+  mysql:
+    build:
+      context: .
+      dockerfile: ./bdd/Dockerfile
+    networks:
+      - internal
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+networks:
+  internal:
