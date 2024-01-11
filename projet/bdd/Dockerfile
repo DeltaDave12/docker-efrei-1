@@ -1,7 +1,12 @@
-FROM debian:bullseye-slim
+FROM debian:bullseye
 
-RUN apt-get update && \
-    apt-get install -y mysql-server
+WORKDIR /bdd
+
+COPY . .
+
+RUN apt update  
+
+RUN apt install -y mariadb-server
 
 EXPOSE 3306
 

@@ -5,7 +5,8 @@ services:
       context: .
       dockerfile: ./app/Dockerfile
     networks:
-      - internal
+      internal:
+        #ipv4_address: 172.18.0.2
     ports:
       - 8080:80
   mysql:
@@ -13,7 +14,8 @@ services:
       context: .
       dockerfile: ./bdd/Dockerfile
     networks:
-      - internal
+      internal:
+        #ipv4_address: 172.18.0.3
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: my_database
@@ -21,3 +23,9 @@ services:
       MYSQL_PASSWORD: password
 networks:
   internal:
+    #driver: bridge
+    #internal: true
+    #ipam:
+      #driver: default
+      #config:
+        #- subnet: 172.18.0.0/16
