@@ -1,0 +1,27 @@
+version: '3.1'
+services: 
+  server1:
+    build:
+      context: .
+      target: server1
+    ports:
+      - 6001:3000
+  server2:
+    build:
+      context: .
+      target: server2
+    ports:
+      - 6002:3000
+  server3:
+    build:
+      context: .
+      target: server3
+    ports:
+      - 6003:3000
+  server4:
+    build:
+      context: .
+      target: server4
+    ports:
+      - 6004:3000
+  

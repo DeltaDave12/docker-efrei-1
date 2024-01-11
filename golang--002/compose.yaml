@@ -1,0 +1,38 @@
+version: "3.1"
+services:
+  app:
+    build:
+      context: .
+    restart: always
+    ports:
+      - 6003:8080
+    depends_on:
+      - redis
+      - db
+    networks:
+      - internal
+    environment:
+      REDIS_URL: redis:6379
+      DATABASE_URL: postgres://app:root@db:5432/app?sslmode=disable
+  redis:
+    image: redis:7.2.3-alpine
+    restart: always
+    networks:
+      - internal
+  db:
+    image: postgres:16.1-alpine3.19
+    restart: always
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: app
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+    networks:
+      - internal
+
+volumes:
+  database_data:
+
+networks:
+  internal:
